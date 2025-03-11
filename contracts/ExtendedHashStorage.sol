@@ -17,7 +17,7 @@ contract ExtendedHashStorage {
         admin = msg.sender;
         registeredClients[admin] = "admin";
         clientList.push(admin);
-        tokenBalance[admin] = 1000; // Saldo iniziale per l'admin
+        tokenBalance[admin] = 1000;
     }
 
     function saveHash(string memory hash) public onlyRegistered {
@@ -35,7 +35,7 @@ contract ExtendedHashStorage {
         require(keccak256(abi.encodePacked(password)) == keccak256(abi.encodePacked("admin")), "Invalid password");
         require(bytes(registeredClients[msg.sender]).length == 0, "Client already registered.");
         registeredClients[msg.sender] = username;
-        tokenBalance[msg.sender] = 100; // Nuovo client riceve 100 token
+        tokenBalance[msg.sender] = 100;
         clientList.push(msg.sender);
         emit ClientRegistered(msg.sender, username);
     }
@@ -52,7 +52,6 @@ contract ExtendedHashStorage {
         return tokenBalance[client];
     }
 
-    // Penalizza un client sottraendogli un certo ammontare di token
     function penalizeClient(address client, uint256 amount) public onlyRegistered {
         require(client != msg.sender, "Cannot penalize yourself");
         require(tokenBalance[client] >= amount, "Insufficient tokens to penalize");
@@ -60,9 +59,8 @@ contract ExtendedHashStorage {
         emit TokensPenalized(client, amount);
     }
 
-    // Reset dei token per tutti i client (solo admin)
     function resetTokenBalances() public onlyAdmin {
-        for(uint i = 0; i < clientList.length; i++){
+        for (uint i = 0; i < clientList.length; i++){
             address client = clientList[i];
             if(client == admin) {
                 tokenBalance[client] = 1000;

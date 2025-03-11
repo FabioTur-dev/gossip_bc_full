@@ -173,16 +173,6 @@ def plot_accuracy_boxplot_by_dataset(results_dir="results"):
 
 
 def plot_peer_flow_bar_with_progress(results_dir="results"):
-    """
-    Crea un bar plot raggruppato per dataset in cui per ogni peer viene mostrato il flow,
-    calcolato come (accuracy finale - accuracy iniziale), e viene evidenziata anche la progressione
-    dei cambiamenti (ovvero, ogni punto intermedio, riportato come delta rispetto all'accuracy iniziale).
-
-    Sopra ogni gruppo (dataset) viene visualizzata una scritta che riassume i peer, ad esempio "Peer 0 ... Peer 9",
-    con un riquadro attorno per renderla più professionale.
-    I colori dei gruppi sono quelli della palette "deep" usata anche nel line plot.
-    Viene inoltre tracciata una linea a y=0 per evidenziare quando il flow è negativo.
-    """
     pattern = os.path.join(results_dir, "*mnist0.1*.json")
     json_files = glob.glob(pattern)
     if not json_files:
