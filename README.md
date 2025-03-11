@@ -6,10 +6,14 @@ FedBGS is a decentralized gossip learning system that leverages blockchain techn
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Clone the Repository](#clone-the-repository)
+  - [Ethereum Development Setup](#ethereum-development-setup)
+  - [IPFS (Kubo Version) Setup](#ipfs-kubo-version-setup)
 - [Deployment and Setup](#deployment-and-setup)
   - [1. Ganache Setup](#1-ganache-setup)
-  - [2. IPFS Setup](#2-ipfs-setup)
-  - [3. Truffle and Smart Contract Deployment](#3-truffle-and-smart-contract-deployment)
+  - [2. Truffle and Smart Contract Deployment](#2-truffle-and-smart-contract-deployment)
+- [After Installation Guide](#after-installation-guide)
+- [Post-Migration Update Instructions](#post-migration-update-instructions)
 - [Running FedBGS](#running-fedbgs)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -26,7 +30,7 @@ FedBGS is a decentralized gossip learning system that leverages blockchain techn
 - **npm** (v6+)
 - **Ganache CLI** or **Ganache GUI**
 - **Truffle** (v5+)
-- **IPFS** (v0.4+)
+- **IPFS** (v0.4+ for Kubo)
 - **Git**
 
 ## Installation
@@ -204,7 +208,6 @@ FED_CLUSTERING_ADDRESS = "0xbeB84916920ED1E09d8F4a1CFdd3118cBD4dB164"  # FedClus
 ## Conclusion
 
 By following these steps, you will have a fully initialized development environment with Ganache, Truffle, and IPFS up and running. You are now ready to develop, test, and deploy your smart contracts and decentralized applications.
-```
 
 
 
