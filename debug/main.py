@@ -10,8 +10,8 @@ import random
 import threading
 from web3 import Web3
 from ipfs_utils import save_model_to_ipfs
-from blockchain_functions import register_client, save_hash, check_hash_exists, penalize_client, reset_tokens
-import plots
+from blockchain_functions import register_client, save_hash, check_hash_exists, reset_tokens
+from debug import plots
 from nets import NetMNIST, NetCIFAR, NetSTL, NetImageNet
 
 torch.manual_seed(42)
@@ -21,7 +21,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 WEB3_PROVIDER = "http://127.0.0.1:8545"
 CONTRACT_ADDRESS = "0x5FE9bbb1938fB788471a99DD14336C3Bde51A57a"
-with open("./build/contracts/ExtendedHashStorage.json") as f:
+with open("../build/contracts/ExtendedHashStorage.json") as f:
     contract_data = json.load(f)
     ABI = contract_data["abi"]
 
@@ -31,8 +31,8 @@ accounts = web3.eth.accounts
 
 def load_data_mnist(n_peers):
     transform = Compose([ToTensor(), Normalize((0.1307,), (0.3081,))])
-    dataset = MNIST("./data", train=True, download=True, transform=transform)
-    test_dataset = MNIST("./data", train=False, download=True, transform=transform)
+    dataset = MNIST("../data", train=True, download=True, transform=transform)
+    test_dataset = MNIST("../data", train=False, download=True, transform=transform)
     partition_size = len(dataset) // n_peers
     lengths = [partition_size] * n_peers
     datasets = random_split(dataset, lengths)
@@ -40,8 +40,8 @@ def load_data_mnist(n_peers):
 
 def load_data_cifar10(n_peers):
     transform = Compose([ToTensor(), Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))])
-    dataset = CIFAR10("./data", train=True, download=True, transform=transform)
-    test_dataset = CIFAR10("./data", train=False, download=True, transform=transform)
+    dataset = CIFAR10("../data", train=True, download=True, transform=transform)
+    test_dataset = CIFAR10("../data", train=False, download=True, transform=transform)
     partition_size = len(dataset) // n_peers
     lengths = [partition_size] * n_peers
     datasets = random_split(dataset, lengths)
@@ -49,8 +49,8 @@ def load_data_cifar10(n_peers):
 
 def load_data_cifar100(n_peers):
     transform = Compose([ToTensor(), Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))])
-    dataset = CIFAR100("./data", train=True, download=True, transform=transform)
-    test_dataset = CIFAR100("./data", train=False, download=True, transform=transform)
+    dataset = CIFAR100("../data", train=True, download=True, transform=transform)
+    test_dataset = CIFAR100("../data", train=False, download=True, transform=transform)
     partition_size = len(dataset) // n_peers
     lengths = [partition_size] * n_peers
     datasets = random_split(dataset, lengths)
@@ -58,8 +58,8 @@ def load_data_cifar100(n_peers):
 
 def load_data_fmnist(n_peers):
     transform = Compose([ToTensor(), Normalize((0.5,), (0.5,))])
-    dataset = FashionMNIST("./data", train=True, download=True, transform=transform)
-    test_dataset = FashionMNIST("./data", train=False, download=True, transform=transform)
+    dataset = FashionMNIST("../data", train=True, download=True, transform=transform)
+    test_dataset = FashionMNIST("../data", train=False, download=True, transform=transform)
     partition_size = len(dataset) // n_peers
     lengths = [partition_size] * n_peers
     datasets = random_split(dataset, lengths)
@@ -67,8 +67,8 @@ def load_data_fmnist(n_peers):
 
 def load_data_stl10(n_peers):
     transform = Compose([ToTensor(), Normalize((0.4467, 0.4398, 0.4066), (0.224, 0.221, 0.223))])
-    dataset = STL10("./data", split="train", download=True, transform=transform)
-    test_dataset = STL10("./data", split="test", download=True, transform=transform)
+    dataset = STL10("../data", split="train", download=True, transform=transform)
+    test_dataset = STL10("../data", split="test", download=True, transform=transform)
     partition_size = len(dataset) // n_peers
     lengths = [partition_size] * n_peers
     datasets = random_split(dataset, lengths)

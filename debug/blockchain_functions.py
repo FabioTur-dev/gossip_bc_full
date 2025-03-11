@@ -4,7 +4,7 @@ from web3 import Web3
 WEB3_PROVIDER = "http://127.0.0.1:8545"
 CONTRACT_ADDRESS = "0x5FE9bbb1938fB788471a99DD14336C3Bde51A57a"
 
-with open('./build/contracts/ExtendedHashStorage.json') as f:
+with open('../build/contracts/ExtendedHashStorage.json') as f:
     contract_data = json.load(f)
     ABI = contract_data['abi']
 

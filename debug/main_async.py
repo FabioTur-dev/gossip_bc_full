@@ -23,7 +23,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 WEB3_PROVIDER = "http://127.0.0.1:8545"
 CONTRACT_ADDRESS = "0x5FE9bbb1938fB788471a99DD14336C3Bde51A57a"
-with open("./build/contracts/ExtendedHashStorage.json") as f:
+with open("../build/contracts/ExtendedHashStorage.json") as f:
     contract_data = json.load(f)
     ABI = contract_data["abi"]
 
@@ -95,8 +95,8 @@ class DirichletPartitioner:
 
 def load_data_mnist(n_peers, beta=0.5):
     transform = Compose([ToTensor(), Normalize((0.1307,), (0.3081,))])
-    dataset = MNIST("./data", train=True, download=True, transform=transform)
-    test_dataset = MNIST("./data", train=False, download=True, transform=transform)
+    dataset = MNIST("../data", train=True, download=True, transform=transform)
+    test_dataset = MNIST("../data", train=False, download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"MNIST data partitioned with Dirichlet beta={beta}")
@@ -110,8 +110,8 @@ def load_data_cifar10(n_peers, beta=0.5):
         ToTensor(),
         Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
     ])
-    dataset = CIFAR10("./data", train=True, download=True, transform=transform)
-    test_dataset = CIFAR10("./data", train=False, download=True, transform=transform)
+    dataset = CIFAR10("../data", train=True, download=True, transform=transform)
+    test_dataset = CIFAR10("../data", train=False, download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"CIFAR-10 data partitioned with Dirichlet beta={beta}")
@@ -120,8 +120,8 @@ def load_data_cifar10(n_peers, beta=0.5):
 
 def load_data_fmnist(n_peers, beta=0.5):
     transform = Compose([ToTensor(), Normalize((0.5,), (0.5,))])
-    dataset = FashionMNIST("./data", train=True, download=True, transform=transform)
-    test_dataset = FashionMNIST("./data", train=False, download=True, transform=transform)
+    dataset = FashionMNIST("../data", train=True, download=True, transform=transform)
+    test_dataset = FashionMNIST("../data", train=False, download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"Fashion-MNIST data partitioned with Dirichlet beta={beta}")
@@ -130,8 +130,8 @@ def load_data_fmnist(n_peers, beta=0.5):
 
 def load_data_emnist(n_peers, beta=0.5):
     transform = Compose([ToTensor(), Normalize((0.1307,), (0.3081,))])
-    dataset = EMNIST("./data", split="digits", train=True, download=True, transform=transform)
-    test_dataset = EMNIST("./data", split="digits", train=False, download=True, transform=transform)
+    dataset = EMNIST("../data", split="digits", train=True, download=True, transform=transform)
+    test_dataset = EMNIST("../data", split="digits", train=False, download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"EMNIST (digits) data partitioned with Dirichlet beta={beta}")
@@ -140,8 +140,8 @@ def load_data_emnist(n_peers, beta=0.5):
 
 def load_data_kmnist(n_peers, beta=0.5):
     transform = Compose([ToTensor(), Normalize((0.5,), (0.5,))])
-    dataset = KMNIST("./data", train=True, download=True, transform=transform)
-    test_dataset = KMNIST("./data", train=False, download=True, transform=transform)
+    dataset = KMNIST("../data", train=True, download=True, transform=transform)
+    test_dataset = KMNIST("../data", train=False, download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"KMNIST data partitioned with Dirichlet beta={beta}")
@@ -150,8 +150,8 @@ def load_data_kmnist(n_peers, beta=0.5):
 
 def load_data_qmnist(n_peers, beta=0.5):
     transform = Compose([ToTensor(), Normalize((0.1307,), (0.3081,))])
-    dataset = QMNIST("./data", what="train", download=True, transform=transform)
-    test_dataset = QMNIST("./data", what="test", download=True, transform=transform)
+    dataset = QMNIST("../data", what="train", download=True, transform=transform)
+    test_dataset = QMNIST("../data", what="test", download=True, transform=transform)
     partitioner = DirichletPartitioner(dataset, n_peers, beta)
     client_datasets = [partitioner.get_client_dataset(i) for i in range(n_peers)]
     print(f"QMNIST data partitioned with Dirichlet beta={beta}")
