@@ -207,7 +207,7 @@ FED_CLUSTERING_ADDRESS = "0xbeB84916920ED1E09d8F4a1CFdd3118cBD4dB164"  # FedClus
 
 ## Conclusion
 
-By following these steps, you will have a fully initialized development environment with Ganache, Truffle, and IPFS up and running. You are now ready to develop, test, and deploy your smart contracts and decentralized applications.
+By following these steps, you will have a fully initialized development environment with Ganache, Truffle, and IPFS up and running. Run main_cluster.py and you are now ready to develop, test, and deploy your smart contracts and decentralized applications.
 
 
 
